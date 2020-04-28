@@ -328,20 +328,19 @@ paspoort = {
 geboortedatum = paspoort["geboortedatum"]
 lengte = paspoort["lengte"]
 geboorteplaats = paspoort["geboorteplaats"]
-print(geboortedatum, lengte, geboorteplaats)
 
-foto = ["1.jpg", "2.jpg", "3.jpg"]
+today = "2020-3-28"
+foto = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg",
+        "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg"]
 achternaam = ["de Vries", "Jansen", "Xi'lantulupuxsa"]
 voornaam = ["Piet", "Jan", "Umbulula"]
-geboortedatum = random.randint(1, 28), random.randint(
-    1, 12), random.randint(1900, 2020)
+geboortedatum = str(random.randint(1900, 2020))+"-"+str(random.randint(
+    1, 12))+"-" + str(random.randint(1, 28))
 geboorteplaats = ["Lutjebroek", "Sesamstraat", "Timboektoe"]
 geslacht = ["Agender", "Androgyne", "Androgynous", "Bigender", "Cis", "Cisgender", "Cis Female", "Cis Male", "Cis Man", "Cis Woman", "Cisgender Female", "Cisgender Male", "Cisgender Man", "Cisgender Woman", "Female to Male", "FTM", "Gender Fluid", "Gender Nonconforming", "Gender Questioning", "Gender Variant", "Genderqueer", "Intersex", "Male to Female", "MTF", "Neither", "Neutrois", "Non-binary", "Other", "Pangender", "Trans", "Trans*",
             "Trans Female", "Trans* Female", "Trans Male", "Trans* Male", "Trans Man", "Trans* Man", "Trans Person", "Trans* Person", "Trans Woman", "Trans* Woman", "Transfeminine", "Transgender", "Transgender Female", "Transgender Male", "Transgender Man", "Transgender Person", "Transgender Woman", "Transmasculine", "Transsexual", "Transsexual Female", "Transsexual Male", "Transsexual Man", "Transsexual Person", "Transsexual Woman", "Two-Spirit"]
-lengte = random.randint(50, 200)
+lengte = random.randint(100, 200)
 bsn = random.randint(1111111111, 9999999999)
-
-print(geboortedatum)
 
 paspoort2 = {}
 paspoort2["pasfoto"] = random.choice(foto)
@@ -357,4 +356,16 @@ paspoort2["nationaliteit"] = random.choice(all_countries)
 paspoort2["vingerafdrukL"] = random.choice(foto)
 paspoort2["vingerafdrukR"] = random.choice(foto)
 
-print(paspoort)
+print(paspoort2)
+if paspoort2["nationaliteit"] in commonwealth_states and (2020 - int(paspoort2["geboortedatum"][0:4])) >= 18:
+    paspoort2["nationaliteit"] = "Canada"
+    print(paspoort2)
+
+paspoort2["pasfoto"] = "aangepaste_foto.jpg"
+print(paspoort2)
+
+paspoort2["vingerafdrukL"] = random.choice(foto), random.choice(
+    foto), random.choice(foto), random.choice(foto), random.choice(foto)
+paspoort2["vingerafdrukR"] = random.choice(foto), random.choice(
+    foto), random.choice(foto), random.choice(foto), random.choice(foto)
+print(paspoort2)
