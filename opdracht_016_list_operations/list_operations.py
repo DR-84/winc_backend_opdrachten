@@ -31,15 +31,19 @@ jesper_liverod = ["Jesper Liveröd", "bass", [2017, 2017]]
 
 all_members = [
     shane_embury, mark_greenway1, mark_greenway2, danny_herrera, mitch_harris, nicholas_bullen, miles_ratledge, simon_oppenheimer, graham_robertson, daryl_fedeski, finbar_quinn, marian_williams, damien_errington, justin_broadrick, peter_shaw, mick_harris, jim_whitely, frank_healy, bill_steer, lee_dorian, jesse_pintado, phil_vane, erik_burke, jesper_liverod]
-year_to_check = 1984
-
+year_to_check = 1996
 for members in all_members:
     if(members[2][0] <= year_to_check and members[2][1] >= year_to_check):
-        band = members
-        print(band)
+        band_in_year = members
+        print(band_in_year)
 
 
-print("Het jaar is "+str(year_to_check)+'. ' + (band[0][0]) + " doet "+(band[0][1][0]) + " en " + (band[0][1][1])+", "+(band[1][0])+" op "
+print("Het jaar is "+str(year_to_check)+'. ' + (band_in_year[0]))
+
+
+band = [nicholas_bullen, simon_oppenheimer, miles_ratledge]
+year = 1981
+print("Het jaar is "+str(year)+'. ' + (band[0][0]) + " doet "+(band[0][1][0]) + " en " + (band[0][1][1])+", "+(band[1][0])+" op "
       + (band[1][1]) + ", " + (band[2][0]) + " op " + (band[2][1])+". ")
 
 band = [nicholas_bullen, daryl_fedeski, graham_robertson, miles_ratledge]
