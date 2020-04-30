@@ -1,4 +1,4 @@
-
+import re
 all_countries = [
     "Afghanistan",
     "Albania",
@@ -255,15 +255,15 @@ all_countries = [
 # while loop version of option one
 
 landen_plus_length = []
-counter = 0
-while counter < len(all_countries):
+count = 0
+while count < len(all_countries):
     landen_plus_length.append(
         {
-            "country": all_countries[counter],
-            "country_name_length": len(all_countries[counter]),
+            "country": all_countries[count],
+            "country_name_length": len(all_countries[count]),
         }
     )
-    counter += 1
+    count += 1
 
 # print(landen_plus_length)
 
@@ -301,6 +301,58 @@ while count < len(landen_plus_length):
         count += 1
         pass
 
-print(shortest_countrynames)
+# print(shortest_countrynames)
 
 # Opdracht 2
+
+
+countries_top3 = []
+countries_vowels = []
+count = 0
+
+
+while count < len(all_countries):
+    countries_vowels.append(
+        {
+            "country": all_countries[count],
+            "country_vowels": len(re.sub("[^AEIOUaeiou]", "",
+                                         all_countries[count])),
+        }
+    )
+    countries_vowel_sorted = sorted(
+        countries_vowels,  key=lambda i: i["country_vowels"], reverse=True)
+    count += 1
+
+count = 0
+
+while count < 3:
+    countries_top3.append(countries_vowel_sorted[count])
+    count += 1
+
+
+# print(countries_top3)
+
+# Opdracht 3
+
+all_countries_lower = []
+count = 0
+while count < len(all_countries):
+    all_countries_lower.append(all_countries[count].lower())
+    count += 1
+
+print(all_countries_lower)
+
+""" countries_alphabet = []
+count = 0
+
+while count < len(all_countries_lower):
+    countries_alphabet.append(
+        {
+            "country": all_countries_lower[count],
+            "letters_from_alphabet": (re.sub("[^abcdefghijklmnopqrstuvwxyz]", "",
+                                             all_countries_lower[count])),
+        }
+    )
+    count += 1
+print(countries_alphabet)
+ """
