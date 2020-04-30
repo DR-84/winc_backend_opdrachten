@@ -252,7 +252,23 @@ all_countries = [
 ]
 
 
+# while loop version of option one
+
+""" all_countriesDict = []
+counter = 0
+while counter < len(all_countries):
+    all_countriesDict.append(
+        {
+            "Country": all_countries[counter],
+            "Country Name Length": len(all_countries[counter]),
+        }
+    )
+    counter += 1
+
+print(all_countriesDict)
 landen_plus_length = []
+ """
+# option one:
 
 for land in all_countries:
     landen_plus_length.append(
@@ -262,7 +278,21 @@ for land in all_countries:
 
         })
 
+
+# option two:
+
+""" for land in all_countries:
+    landen_plus_length.append(
+        {
+            land: len(land)
+        })
+"""
+
+
 # Opdracht 1
 
-shortest_countries = []
-
+shortest_countrynames = []
+count = 0
+while count <
+# while loop itereren over landen_plus_length int(value) tot lettercount is < of = aan andere lettercount
+# als lettercount =< dan append value shortest_countrynames
