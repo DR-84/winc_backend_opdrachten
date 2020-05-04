@@ -334,25 +334,53 @@ while count < 3:
 
 # Opdracht 3
 
+print("test1")
 all_countries_lower = []
+is_in_alphabet = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+]
+countries_needed_for_alphabet = []
 count = 0
-while count < len(all_countries):
+count2 = 0
+
+while count < len(all_countries) and is_in_alphabet is not []:
     all_countries_lower.append(all_countries[count].lower())
+    while count2 < len(all_countries_lower[count]):
+        if all_countries[count][count2] in is_in_alphabet:
+            is_in_alphabet.remove(all_countries[count][count2])
+            count2 += 1
+            if all_countries[count] not in countries_needed_for_alphabet:
+                countries_needed_for_alphabet.append(all_countries[count])
+        else:
+            count2 += 1
+        pass
+    count2 = 0
     count += 1
 
-print(all_countries_lower)
 
-""" countries_alphabet = []
-count = 0
-
-while count < len(all_countries_lower):
-    countries_alphabet.append(
-        {
-            "country": all_countries_lower[count],
-            "letters_from_alphabet": (re.sub("[^abcdefghijklmnopqrstuvwxyz]", "",
-                                             all_countries_lower[count])),
-        }
-    )
-    count += 1
-print(countries_alphabet)
- """
+print(countries_needed_for_alphabet)
+print("test1klaar")
