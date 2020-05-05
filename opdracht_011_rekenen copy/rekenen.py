@@ -24,12 +24,18 @@ prijsGemiddeldTweecijfers = round(boodskapjesLijst / 3, 2)
 print(prijsGemiddeldTweecijfers)
 
 # total value of groceries
-totaalBoodskapjes = (aantalKaas * kaas) + (aantalWorst * worst) + (
-    aantalSixpackAmstelRadlerNulProcentGrapefruit*aantalSixpackAmstelRadlerNulProcentGrapefruit)
+totaalBoodskapjes = (
+    (aantalKaas * kaas)
+    + (aantalWorst * worst)
+    + (
+        aantalSixpackAmstelRadlerNulProcentGrapefruit
+        * aantalSixpackAmstelRadlerNulProcentGrapefruit
+    )
+)
 print(totaalBoodskapjes)
 
 # calculate the total amount of discount
-totaalBoodskapjesKorting = totaalBoodskapjes * ((100 - kortingsPercentage)/100)
+totaalBoodskapjesKorting = totaalBoodskapjes * ((100 - kortingsPercentage) / 100)
 print(totaalBoodskapjesKorting)
 
 """ see above """

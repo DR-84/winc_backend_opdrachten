@@ -253,58 +253,25 @@ all_countries = [
 ]
 
 
-# while loop version of option one
-
 landen_plus_length = []
-count = 0
-while count < len(all_countries):
-    landen_plus_length.append(
-        {
-            "country": all_countries[count],
-            "country_name_length": len(all_countries[count]),
-        }
-    )
-    count += 1
+for land in all_countries:
+    landen_plus_length.append({"land_naam": land, "land_length": len(land)})
+
 
 # print(landen_plus_length)
-
-
-"""
-# option one:
-for land in all_countries:
-    landen_plus_length.append(
-        {
-            "land_naam": land,
-            "land_length": len(land)
-
-        })
-
-
-# option two:
-
- for land in all_countries:
-    landen_plus_length.append(
-        {
-            land: len(land)
-        })
-"""
-
 
 # Opdracht 1
 
 shortest_countrynames = []
-count = 0
-while count < len(landen_plus_length):
-    if landen_plus_length[count]["country_name_length"] == min(
-        [b["country_name_length"] for b in landen_plus_length]
-    ):
-        shortest_countrynames.append(landen_plus_length[count]["country"])
-        count += 1
+
+for land in landen_plus_length:
+    if land < 5:
+        shortest_countrynames.append([b["land_naam"] for b in landen_plus_length])
     else:
-        count += 1
         pass
 
-# print(shortest_countrynames)
+
+print(shortest_countrynames)
 
 # Opdracht 2
 
@@ -337,7 +304,7 @@ while count < 3:
 
 # Opdracht 3
 
-print("test1")
+
 all_countries_lower = []
 is_in_alphabet = [
     "a",
@@ -385,5 +352,4 @@ while count < len(all_countries) and is_in_alphabet is not []:
     count += 1
 
 
-print(countries_needed_for_alphabet)
-print("test1klaar")
+# print(countries_needed_for_alphabet)
