@@ -315,10 +315,11 @@ count = 0
 
 
 while count < len(all_countries):
+    country = all_countries[count]
     countries_vowels.append(
         {
-            "country": all_countries[count],
-            "country_vowels": len(re.sub("[^AEIOUaeiou]", "", all_countries[count])),
+            "country": country,
+            "country_vowels": len(re.sub("[^AEIOUaeiou]", "", country)),
         }
     )
     countries_vowel_sorted = sorted(
@@ -378,9 +379,9 @@ while count < len(all_countries) and is_in_alphabet is not []:
             count2 += 1
             if all_countries[count] not in countries_needed_for_alphabet:
                 countries_needed_for_alphabet.append(all_countries[count])
-        else:
-            count2 += 1
-        pass
+            else:
+                count2 += 1
+    pass
     count2 = 0
     count += 1
 
