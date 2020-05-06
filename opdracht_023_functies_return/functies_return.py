@@ -48,27 +48,27 @@ home_team = "Ajax"
 
 
 def who_won(goals, players):
-    team1 = []
-    team2 = []
+    team1_goals = []
+    team2_goals = []
     for goal in goals:
         for player in players:
             team = player["team_name"]
             if goal["id"] == player["id"]:
-                if team in team1 or len(team1) == 0:
-                    team1.append(team)
+                if team in team1_goals or len(team1_goals) == 0:
+                    team1_goals.append(team)
                 else:
-                    team2.append(team)
+                    team2_goals.append(team)
 
-    if len(team1) > len(team2):
-        winner = team1
-        loser = team2
+    if len(team1_goals) > len(team2_goals):
+        winner = team1_goals
+        loser = team2_goals
     else:
-        winner = team2
-        loser = team1
+        winner = team2_goals
+        loser = team1_goals
 
     win_points = str(len(winner))
     lose_points = str(len(loser))
-    return (winner[0], "wint van", loser[0], "met", win_points, "-", lose_points)
+    return f"{winner[0]} wint van {loser[0]} met {win_points}-{lose_points}."
 
 
 def get_goal_info(players, goal):
@@ -105,18 +105,9 @@ def generate_match_report(players, goals):
             if goals["team_name"] is not home_team:
                 away += 1
             line = (
-                "In de",
-                goals["minute"],
-                "e minuut scoort ",
-                goals["player_name"],
-                " voor",
-                goals["team_name"],
-                ", het is",
-                home,
-                "-",
-                away,
-                ",",
+                f"In de {goals['minute']}e minuut scoort {goals['player_name']} voor "
             )
+            line += f"{goals['team_name']} het is {home}-{away}."
 
             report_lines.append(line)
     report_lines.append(who_won(goal_list, ajax_vitesse))
