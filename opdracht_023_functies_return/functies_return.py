@@ -1,4 +1,4 @@
-ajax_vitesse_1972_05_12 = [
+ajax_vitesse = [
     {"full_name": "Heinz Stuy", "id": 1, "team_name": "Ajax"},
     {"full_name": "Horst Blankenburg", "id": 2, "team_name": "Ajax"},
     {"full_name": "Barry Hulshoff", "id": 3, "team_name": "Ajax"},
@@ -44,6 +44,31 @@ goal_list = [
 
 
 # -------------- opdracht 1------------------
+home_team = "Ajax"
+
+
+def who_won(goals, players):
+    team1 = []
+    team2 = []
+    for goal in goals:
+        for player in players:
+            team = player["team_name"]
+            if goal["id"] == player["id"]:
+                if team in team1 or len(team1) == 0:
+                    team1.append(team)
+                else:
+                    team2.append(team)
+
+    if len(team1) > len(team2):
+        winner = team1
+        loser = team2
+    else:
+        winner = team2
+        loser = team1
+
+    win_points = str(len(winner))
+    lose_points = str(len(loser))
+    return (winner[0], "wint van", loser[0], "met", win_points, "-", lose_points)
 
 
 def get_goal_info(players, goal):
@@ -59,27 +84,45 @@ def get_goal_info(players, goal):
             }
 
 
+def print_match_report(items):
+    for item in items:
+        print(item)
+
+
 # -------------- opdracht 2------------------
 
 
-def print_match_report(goal_info):
+def generate_match_report(players, goals):
+    report_lines = []
     home = 0
     away = 0
-    if goal_info["team_name"] == "Ajax":
-        home += 1
-    else:
-        away += 1
-    print(
-        "in de",
-        str(goal_info["minute"]) + "e minuut scoort",
-        goal_info["player_name"],
-        "voor",
-        goal_info["team_name"],
-        ", het is",
-        str(home),
-        "-",
-        str(away),
-    )
+    for goal in goals:
+        goals_full_info = []
+        goals_full_info.append(get_goal_info(players, goal))
+        for goals in goals_full_info:
+            if goals["team_name"] is home_team:
+                home += 1
+            if goals["team_name"] is not home_team:
+                away += 1
+            line = (
+                "In de",
+                goals["minute"],
+                "e minuut scoort ",
+                goals["player_name"],
+                " voor",
+                goals["team_name"],
+                ", het is",
+                home,
+                "-",
+                away,
+                ",",
+            )
+
+            report_lines.append(line)
+    report_lines.append(who_won(goal_list, ajax_vitesse))
+    return report_lines
 
 
-print_match_report(get_goal_info(ajax_vitesse_1972_05_12, goal_list[0]))
+# print_match_report(get_goal_info(ajax_vitesse, goal_list[0]))
+
+print_match_report(generate_match_report(ajax_vitesse, goal_list))
