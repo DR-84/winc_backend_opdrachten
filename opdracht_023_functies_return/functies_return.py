@@ -104,9 +104,8 @@ def generate_match_report(players, goals):
                 home += 1
             if goals["team_name"] is not home_team:
                 away += 1
-            line = (
-                f"In de {goals['minute']}e minuut scoort {goals['player_name']} voor "
-            )
+            line = f"In de {goals['minute']}e minuut "
+            line += f"scoort {goals['player_name']} voor "
             line += f"{goals['team_name']} het is {home}-{away}."
 
             report_lines.append(line)
