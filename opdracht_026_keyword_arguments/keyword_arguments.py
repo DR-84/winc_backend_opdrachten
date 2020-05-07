@@ -56,7 +56,7 @@ def gravity_between_objects(object_one, object_two, distance):
 # gravity_between_objects(object_one=800, object_two=1500, distance=3)
 # gravity_between_objects(object_one=800, object_two=1500, distance=3)
 
-# ---------------opdracht 2---------------
+# ---------------opdracht 3---------------
 
 # Distance is in AU https://en.wikipedia.org/wiki/Astronomical_unit
 
