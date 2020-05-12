@@ -1,54 +1,76 @@
-class Speler:
-    def __init__(self, full_name, id, team_name):
-        self.full_name =
-
-
-ajax_vitesse = [
-    {"full_name": "Heinz Stuy", "id": 1, "team_name": "Ajax"},
-    {"full_name": "Horst Blankenburg", "id": 2, "team_name": "Ajax"},
-    {"full_name": "Barry Hulshoff", "id": 3, "team_name": "Ajax"},
-    {"full_name": "Gerrie Mühren", "id": 4, "team_name": "Ajax"},
-    {"full_name": "Ruud Krol", "id": 5, "team_name": "Ajax"},
-    {"full_name": "Wim Suurbier", "id": 6, "team_name": "Ajax"},
-    {"full_name": "Johan Neeskens", "id": 7, "team_name": "Ajax"},
-    {"full_name": "Sjaak Swart", "id": 8, "team_name": "Ajax"},
-    {"full_name": "Arie Haan", "id": 9, "team_name": "Ajax"},
-    {"full_name": "Johan Cruyff", "id": 10, "team_name": "Ajax"},
-    {"full_name": "Dick van Dijk", "id": 11, "team_name": "Ajax"},
-    {"full_name": "Johnny Rep", "id": 12, "team_name": "Ajax"},
-    {"full_name": "Dick Beukhof", "id": 13, "team_name": "Vitesse"},
-    {"full_name": "Nico Kunst", "id": 14, "team_name": "Vitesse"},
-    {"full_name": "Ben Gerritsen", "id": 15, "team_name": "Vitesse"},
-    {"full_name": "Willy Melchers", "id": 16, "team_name": "Vitesse"},
-    {"full_name": "Ben Bosma", "id": 17, "team_name": "Vitesse"},
-    {"full_name": "Bram van Kerkhof", "id": 18, "team_name": "Vitesse"},
-    {"full_name": "Herman Veenendaal", "id": 19, "team_name": "Vitesse"},
-    {"full_name": "Willy Veenstra", "id": 20, "team_name": "Vitesse"},
-    {"full_name": "Co Prins", "id": 21, "team_name": "Vitesse"},
-    {"full_name": "Theo Rutten", "id": 22, "team_name": "Vitesse"},
-    {"full_name": "Henk Vleeming", "id": 23, "team_name": "Vitesse"},
-    {"full_name": "Henk Hofs", "id": 24, "team_name": "Vitesse"},
-    {"full_name": "John Meeuwsen", "id": 25, "team_name": "Vitesse"},
-]
-
-goal_list = [
-    {"id": 7, "time": 10},
-    {"id": 7, "time": 28},
-    {"id": 10, "time": 32},
-    {"id": 10, "time": 42},
-    {"id": 10, "time": 47},
-    {"id": 11, "time": 49},
-    {"id": 11, "time": 51},
-    {"id": 4, "time": 63},
-    {"id": 3, "time": 70},
-    {"id": 19, "time": 75},
-    {"id": 10, "time": 78},
-    {"id": 11, "time": 81},
-    {"id": 7, "time": 88},
-]
-
+# is het idee van de opdracht dat we onze code/functions uit "return value"
+# herschrijven? of gaat het het om het eind resultaat.
 
 # -------------- opdracht 1------------------
+
+
+class Player:
+    def __init__(self, name, num, team):
+        self.full_name = name
+        self.id = num
+        self.team = team
+
+
+class Goals:
+    def __init__(self, num, minute):
+        self.id = num
+        self.minute = minute
+
+
+player_list = [
+    Player("Heinz Stuy", 1, "AFC Ajax"),
+    Player("Horst Blankenburg", 2, "AFC Ajax"),
+    Player("Barry Hulshoff", 3, "AFC Ajax"),
+    Player("Gerrie Mühren", 4, "AFC Ajax"),
+    Player("Ruud Krol", 5, "AFC Ajax"),
+    Player("Wim Suurbier", 6, "AFC Ajax"),
+    Player("Johan Neeskens", 7, "AFC Ajax"),
+    Player("Sjaak Swart", 8, "AFC Ajax"),
+    Player("Arie Haan", 9, "AFC Ajax"),
+    Player("Johan Cruyff", 10, "AFC Ajax"),
+    Player("Dick van Dijk", 11, "AFC Ajax"),
+    Player("Johnny Rep", 12, "AFC Ajax"),
+    Player("Dick Beukhof", 13, "Vitesse"),
+    Player("Nico Kunst", 14, "Vitesse"),
+    Player("Ben Gerritsen", 15, "Vitesse"),
+    Player("Willy Melchers", 16, "Vitesse"),
+    Player("Ben Bosma", 17, "Vitesse"),
+    Player("Bram van Kerkhof", 18, "Vitesse"),
+    Player("Herman Veenendaal", 19, "Vitesse"),
+    Player("Willy Veenstra", 20, "Vitesse"),
+    Player("Co Prins", 21, "Vitesse"),
+    Player("Theo Rutten", 22, "Vitesse"),
+    Player("Henk Vleeming", 23, "Vitesse"),
+    Player("Henk Hofs", 24, "Vitesse"),
+    Player("John Meeuwsen", 25, "Vitesse"),
+]
+
+
+goal_list = [
+    Goals(7, 10),
+    Goals(7, 28),
+    Goals(10, 32),
+    Goals(10, 42),
+    Goals(10, 47),
+    Goals(11, 49),
+    Goals(11, 51),
+    Goals(4, 63),
+    Goals(3, 70),
+    Goals(19, 75),
+    Goals(10, 78),
+    Goals(11, 81),
+    Goals(7, 88),
+]
+
+
+# def generate_match_report(goal_list, player_list):
+#     for i in goal_list:
+#         if i.id
+
+
+# generate_match_report(goal_list, player_list)
+
+
 home_team = "Ajax"
 
 
@@ -57,8 +79,8 @@ def who_won(goals, players):
     team2_goals = []
     for goal in goals:
         for player in players:
-            team = player["team_name"]
-            if goal["id"] == player["id"]:
+            team = player.team
+            if goal.id == player.id:
                 if team in team1_goals or len(team1_goals) == 0:
                     team1_goals.append(team)
                 else:
@@ -78,10 +100,10 @@ def who_won(goals, players):
 
 def get_goal_info(players, goal):
     for player in players:
-        if goal["id"] == player["id"]:
-            minute = goal["time"]
-            player_name = player["full_name"]
-            team_name = player["team_name"]
+        if goal.id == player.id:
+            minute = goal.minute
+            player_name = player.full_name
+            team_name = player.team
             return {
                 "minute": minute,
                 "player_name": player_name,
@@ -114,10 +136,10 @@ def generate_match_report(players, goals):
             line += f"{goals['team_name']} het is {home}-{away}."
 
             report_lines.append(line)
-    report_lines.append(who_won(goal_list, ajax_vitesse))
+    report_lines.append(who_won(goal_list, player_list))
     return report_lines
 
 
 # print_match_report(get_goal_info(ajax_vitesse, goal_list[0]))
 
-print_match_report(generate_match_report(ajax_vitesse, goal_list))
+print_match_report(generate_match_report(player_list, goal_list))

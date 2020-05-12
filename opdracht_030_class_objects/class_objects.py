@@ -11,11 +11,18 @@ class Fruit:
             return "a {} weighs {} gram.".format(self.name, self.weight)
 
 
-apple = Fruit("appel", 100)
-pear = Fruit("pear", 75)
-watermellon = Fruit("watermellon", 1600)
-apple.weight = 200
+fruit_object_list = [Fruit("appel", 100), Fruit("pear", 75), Fruit("watermellon", 1600)]
 
-print(apple.description())
-print(pear.description())
-print(watermellon.description())
+# apple.weight = 200
+
+# print(apple.description())
+# print(pear.description())
+# print(watermellon.description())
+
+
+def print_object_list(list):
+    for i in list:
+        print(i.description())
+
+
+print_object_list(fruit_object_list)
