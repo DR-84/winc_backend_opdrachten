@@ -62,15 +62,6 @@ goal_list = [
     Goals(7, 88),
 ]
 
-
-# def generate_match_report(goal_list, player_list):
-#     for i in goal_list:
-#         if i.id
-
-
-# generate_match_report(goal_list, player_list)
-
-
 home_team = "Ajax"
 
 
@@ -116,9 +107,6 @@ def print_match_report(items):
         print(item)
 
 
-# -------------- opdracht 2------------------
-
-
 def generate_match_report(players, goals):
     report_lines = []
     home = 0
@@ -139,7 +127,5 @@ def generate_match_report(players, goals):
     report_lines.append(who_won(goal_list, player_list))
     return report_lines
 
-
-# print_match_report(get_goal_info(ajax_vitesse, goal_list[0]))
 
 print_match_report(generate_match_report(player_list, goal_list))
