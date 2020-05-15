@@ -1,24 +1,28 @@
 # -------------- opdracht 2------------------
-
-
 class Team:
     def __init__(self, name, trainer, players):
         self.name = name
         self.trainer = trainer
         self.players = players
 
+    # overbodig
     def get_clubname(self):
-        print(self.name)
         return self.name
 
+    # overbodig
     def get_trainername(self):
-        print(self.trainer.name)
         return self.trainer.name
 
+    # playername_is_in_team
     def get_playernames(self):
-        for player in self.players:
-            print(player.name)
-            return player.name
+        # player_list = []
+        # for player in self.players:
+        #     player_list.append(player.name)
+        # return player_list
+        return [player.name for player in self.players]
+
+    def get_specific_name(self, index):
+        return self.players[index].name
 
 
 class Scheidsrechter:
@@ -38,12 +42,6 @@ class Trainer:
         self.name = name
         self.team = team
 
-    def get_trainer_name(self):
-        return self.name
-
-    def get_trainer_team(self):
-        return self.team
-
 
 class Player:
     def __init__(self, name, number, team):
@@ -56,13 +54,27 @@ class Goal:
     def __init__(self, name, minute):
         self.name = name
         self.minute = minute
+        self.homepoints = []
+        self.awaypoints = []
 
-    def print_goal(self, team):
-        print(
-            "In de {}e minuut scoort {} voor {},".format(
-                self.minute, self.name, self.team.name
+    def print_goal(self, home, away):
+        if self.name in home.get_playernames():
+            print(
+                f"In de {self.minute}e minuut scoort {self.name} voor {home.get_clubname()}, het is {self.homepoints} - {self.awaypoints}."
             )
-        )
+        if self.name in away.get_playernames():
+            print(
+                f"In de {self.minute}e minuut scoort {self.name} voor {away.get_clubname()}, het is {self.homepoints} - {self.awaypoints}."
+            )
+
+    def print_winner(self, goals, home, away):
+        list_lgt = len(goals) - 1
+        if goals[list_lgt].homepoints > goals[list_lgt].awaypoints:
+            home_teamname = home.get_clubname()
+            away_teamname = away.get_clubname()
+            print(
+                f"{home_teamname} wint van {away_teamname} met {goals[list_lgt].homepoints}-{goals[list_lgt].awaypoints}"
+            )
 
 
 class Wedstrijd:
@@ -75,40 +87,21 @@ class Wedstrijd:
         self.goals = goals
         self.attendance = attendance
 
-    def generate_match_report(self):
-        home = 0
-        away = 0
-        print(
-            "Op {} speelde {} tegen {} in {} in Amsterdam.".format(
-                self.date, self.home.name, self.away.name, self.location.stadium
-            )
-        )
-        print("Er waren {} bezoekers aanwezig in het stadion.".format(self.attendance))
-        print("De wedstrijd werd gefloten door {}.".format(self.referee.name))
-        print(
-            "De trainer voor {} was {}.".format(self.home.name, self.home.trainer.name)
-        )
-        print(
-            "De trainer voor {} was {}.".format(self.away.name, self.away.trainer.name)
-        )
-        for goal in self.goals:
-            for player in self.home.players:
-                if goal.name in player.name:
-                    home += 1
-                    print(
-                        "In de {}e minuut scoort {} voor {}, het is {} - {}.".format(
-                            goal.minute, goal.name, self.home.name, home, away
-                        )
-                    )
-                else:
-                    away += 1
-                    print(
-                        "In de {}e minuut scoort {} voor {}, het is {} - {}.".format(
-                            goal.minute, goal.name, self.away.name, home, away
-                        )
-                    )
+    def print_match_report(self):
 
-        print("AFC Ajax wint van Vitesse met 12-1")
+        line = []
+        line.append(
+            f"Op {self.date} speelde {self.home.name} tegen {self.away.name} in {self.location.stadium} in Amsterdam."
+        )
+        line.append(f"Er waren {self.attendance} bezoekers aanwezig in het stadion.")
+        line.append(f"De wedstrijd werd gefloten door {self.referee.name}.")
+        line.append(f"De trainer voor {self.home.name} was {self.home.trainer.name}.")
+        line.append(f"De trainer voor {self.away.name} was {self.away.trainer.name}.")
+        for single_line in line:
+            print(single_line)
+        for goal in self.goals:
+            goal.print_goal(self.home, self.away)
+        Goal.print_winner(self, self.goals, self.home, self.away)
 
 
 # hometeam data
@@ -129,7 +122,7 @@ hometeam_players = [
 ]
 # give data to team class
 hometeam = Team("AFC ajax", trainer_hometeam, hometeam_players)
-# hometeam data
+# awayteam data
 trainer_awayteam = Trainer("Cor Brom", "Vitesse")
 awayteam_players = [
     Player("Dick Beukhof", 13, "Vitesse"),
@@ -164,6 +157,25 @@ goals_in_game_named = [
     Goal("Dick van Dijk", 81),
     Goal("Johan Neeskens", 88),
 ]
+
+
+def count_points_for_teams(goals, home, away):
+    i = 0
+    homepoints = 0
+    awaypoints = 0
+    for point in goals:
+        if point.name in home.get_playernames():
+            homepoints += 1
+            goals_in_game_named[i].homepoints = homepoints
+            goals_in_game_named[i].awaypoints = awaypoints
+            i += 1
+        if point.name in away.get_playernames():
+            awaypoints += 1
+            goals_in_game_named[i].homepoints = homepoints
+            goals_in_game_named[i].awaypoints = awaypoints
+            i += 1
+
+
 # location class
 location = Locatie("Amsterdam", "het De Meer stadion", hometeam)
 # referee class
@@ -174,23 +186,5 @@ wedstrijd = Wedstrijd(
 )
 
 
-wedstrijd.generate_match_report()
-awayteam.get_clubname()
-awayteam.get_trainername()
-awayteam.get_playernames()
-# goals_in_game_numbered = [
-#     Goal(7, 10),
-#     Goal(7, 28),
-#     Goal(10, 32),
-#     Goal(10, 42),
-#     Goal(10, 47),
-#     Goal(11, 49),
-#     Goal(11, 51),
-#     Goal(4, 63),
-#     Goal(3, 70),
-#     Goal(19, 75),
-#     Goal(10, 78),
-#     Goal(11, 81),
-#     Goal(7, 88),
-# ]
-#
+count_points_for_teams(goals_in_game_named, hometeam, awayteam)
+wedstrijd.print_match_report()
